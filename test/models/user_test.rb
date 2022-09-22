@@ -20,4 +20,14 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test "name should be max 50 characters" do
+    @user.name = "a" * 51
+    assert_not @user.valid?
+  end
+  
+  test "email should be max 255 characters" do
+    @user.email = "a" * 256
+    assert_not @user.valid?
+  end
+
 end
