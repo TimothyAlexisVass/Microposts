@@ -19,6 +19,9 @@ section {
 textarea {
   resize: vertical;
 }
+img {
+  max-width: 100%;
+}
 .container {
   flex-grow: 1;
 }
