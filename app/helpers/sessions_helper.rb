@@ -4,7 +4,6 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-
   # Remembers a user in a persistent session.
   def remember(user)
     user.remember

@@ -5,11 +5,18 @@
     <%= form_for(:session, url: login_path) do |f| %>
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
+      
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+
+      <div id="login_controls">
+        <%= f.label :remember_check, class: "checkbox inline" do %>
+          <%= f.check_box :remember_check %>
+          <span>Remember me on this computer</span>
+        <% end %>
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+        <div>or <%= link_to "sign up!", signup_path %></div>
+      </div>
     <% end %>
-    <br>
-    <p class="center">Or <%= link_to "sign up!", signup_path %></p>
   </div>
 </div>
