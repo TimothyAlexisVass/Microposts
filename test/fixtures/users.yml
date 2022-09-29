@@ -1,7 +1,9 @@
 <% (1..31).each do |n| %>
 test<%= n %>:
   name: <%= "Test Example #{n}" %>
-  email:  <%= "testuser#{n}@example.com" %>
+  email: <%= "testuser#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
   admin: <%= n==1 %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

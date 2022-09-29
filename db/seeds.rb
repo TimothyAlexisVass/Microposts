@@ -4,6 +4,8 @@
     email: "testuser#{n}@example.com",
     password: "password",
     password_confirmation: "password",
-    admin: n==1
+    admin: n==1,
+    activated: true,
+    activated_at: Time.zone.now
   )
 end
