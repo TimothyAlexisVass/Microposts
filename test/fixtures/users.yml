@@ -3,4 +3,5 @@ test<%= n %>:
   name: <%= "Test Example #{n}" %>
   email:  <%= "testuser#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
+  admin: <%= n==1 %>
 <% end %>

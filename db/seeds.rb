@@ -1,8 +1,9 @@
-100.times do |n|
+(1..99).each do |n|
   User.create!(
-    name: "Example User #{n+1}",
-    email: "testuser#{n<1 ? '' : "-#{n}"}@example.com",
+    name: "Test User #{n}",
+    email: "testuser#{n}@example.com",
     password: "password",
-    password_confirmation: "password"
+    password_confirmation: "password",
+    admin: n==1
   )
 end
