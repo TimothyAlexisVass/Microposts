@@ -27,4 +27,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "should redirect index to log in for guests" do
+    get users_path
+    assert_redirected_to login_url
+  end
+
 end
