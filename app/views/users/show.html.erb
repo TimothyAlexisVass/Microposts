@@ -3,11 +3,7 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
   <% unless @user.activated %>
-    <style>
-      body {
-        color: darkgray;
-      }
-    </style>
+    <style>body {color: darkgray;}</style>
     <em>(inactive)</em>
   <% end %>
 </h1>
