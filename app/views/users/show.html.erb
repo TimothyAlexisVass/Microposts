@@ -2,6 +2,14 @@
 <h1 style="text-align: left;">
   <%= gravatar_for @user %>
   <%= @user.name %>
+  <% unless @user.activated %>
+    <style>
+      body {
+        color: darkgray;
+      }
+    </style>
+    <em>(inactive)</em>
+  <% end %>
 </h1>
 <p>
   <label>E-mail:</label><span> <%= @user.email %></span>

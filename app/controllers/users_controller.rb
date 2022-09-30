@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if not current_user.admin and not @user.activated
+      flash[:danger] = "User #{@user.id} still needs to be activated"
+      redirect_to users_url and return
+    end
   end
 
   def new
@@ -14,9 +18,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Hello #{@user.name}."
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Your account has been created and requires activation. Please check your email to activate your account."
+      redirect_to login_url
     else
       render 'new'
     end
@@ -33,7 +37,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    if current_user.admin
+      @users = User.paginate(page: params[:page])
+    else
+      @users = User.where(activated: true).paginate(page: params[:page])
+    end
   end
 
   def update
