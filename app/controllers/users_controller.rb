@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if not current_user.admin and not @user.activated
+    @microposts = @user.microposts.paginate(page: params[:page])
+    if current_user and not current_user.admin and not @user.activated
       flash[:danger] = "User #{@user.id} still needs to be activated"
       redirect_to users_url and return
     end
