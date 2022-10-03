@@ -1,9 +1,27 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+first:
+  content: "First"
+  created_at: <%= 3.days.ago %>
+  user: test1
 
-one:
-  content: MyText
-  user: one
+second:
+  content: "Second"
+  created_at: <%= 2.days.ago %>
+  user: test1
 
-two:
-  content: MyText
-  user: two
+thid:
+  content: "Third"
+  created_at: <%= 1.days.ago %>
+  user: test1
+
+most_recent:
+  content: "Most recent"
+  created_at: <%= Time.zone.now %>
+  user: test1
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: test1
+<% end %>
+
