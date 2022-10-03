@@ -1,6 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$base_color: #286090;
+$base_lighter: #c5d9ea;
+
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -40,6 +43,7 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
+  color: $base_color !important;
 }
 h2 {
   font-size: 1.2em;
@@ -161,7 +165,6 @@ input {
 
 /* footer */
 footer {
-  background: #222;
   margin-top: 45px;
   min-height: 50px;
 }
@@ -175,4 +178,11 @@ footer {
 }
 .gravatar_edit {
   margin: 10px 0;
+}
+
+.navbar-inverse, footer {
+  background-color: $base_color;
+  .navbar-nav > li > a {
+    color: $base_lighter;
+  }
 }
