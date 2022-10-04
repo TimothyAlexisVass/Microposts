@@ -5,7 +5,11 @@ class User < ApplicationRecord
 
   has_many :microposts, dependent: :destroy
   has_many :microposts, dependent: :destroy
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following_a_user, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following, through: :following_a_user, source: :followed
+  has_many :followed_by_others, class_name: "Relationship", foreign_key: "followed_id",
+dependent: :destroy
+  has_many :followers, through: :followed_by_others, source: :follower
 
   validates :name, presence: true, length: { minimum: 2, maximum: 255 }
   validates :email, presence: true,
@@ -74,6 +78,22 @@ class User < ApplicationRecord
   def feed
     Micropost.where("user_id = ?", id)
   end
+
+  # Follows a user.
+  def follow(user_being_followed)
+    following << user_being_followed
+  end
+  
+  # Unfollows a user.
+  def unfollow(user_being_followed)
+    following.delete(user_being_followed)
+  end
+  
+  # Returns true if the current user is following the other user.
+  def following?(user_being_followed)
+    following.include?(user_being_followed)
+  end
+
 
   private
     def downcase_email

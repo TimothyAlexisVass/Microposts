@@ -1,0 +1,3 @@
+<%= form_for(current_user.following_a_user.find_by(followed_id: @user.id), html: { method: :delete }) do |form| %>
+  <%= form.submit "Unfollow", class: "btn" %>
+<% end %>
