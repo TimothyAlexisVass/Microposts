@@ -1,7 +1,6 @@
-# Ruby on Rails Tutorial sample application
-This is the sample application
+# Microposts application
 ## License
-All source code in the [Ruby on Rails Tutorial](https://www.railstutorial.org/) is available jointly under the MIT License and the Beerware License. See [LICENSE.md](LICENSE.md) for details.
+Free to use however you want.
 ## Getting started
 To get started with the app, clone the repo and then install the needed gems:
 ```

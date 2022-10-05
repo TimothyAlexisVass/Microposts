@@ -76,7 +76,14 @@ dependent: :destroy
 
   # Returns all microposts for this User
   def feed
-    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+    Micropost.where("
+      user_id IN (
+        SELECT followed_id
+        FROM relationships
+        WHERE follower_id = :user_id
+      )
+      OR user_id = :user_id
+    ", user_id: id)
   end
 
   # Follows a user.
